@@ -144,11 +144,7 @@ func (c *collector) Collect(ch chan<- prometheus.Metric) {
 		err  error
 	)
 
-	if c.exporter.fcgiEndpoint != nil {
-		body, err = getDataFastcgi(c.exporter.fcgiEndpoint)
-	} else {
-		body, err = getDataHTTP(c.exporter.endpoint)
-	}
+	body, err = getDataHTTP(c.exporter.endpoint)
 
 	if err != nil {
 		up = 0.0
